@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    int number;
+    int guess;
+    int guessesMade = 0;
+    int maxGuesses = 10;
+    int guesses[10];
+    char name[20];
+
+    printf("Enter your name: ");
+    scanf("%s", name);
+    srand(time(NULL));
+    number = rand() % 100 + 1;
+
+    printf("\nHello %s!\n", name);
+    printf("There is a number picked between 1-100.\n");
+    printf("You have 10 guesses.\n\n");
+
+    while (guessesMade < maxGuesses) {
+        printf("Enter guess #%d: ", guessesMade + 1);
+        scanf("%d", &guess);
+        guesses[guessesMade] = guess;
+        guessesMade = guessesMade + 1;
+        if (guess < number) {
+            printf("Too Low.\n\n");
+        } else if (guess > number) {
+            printf("Too High.\n\n");
+        } else {
+            printf("Congratulations! You guessed the number!\n");
+            break;
+        }
+     }
+     if (guess !=number) {
+        printf("\nYou ran out of guesses.\n");
+        printf("The number was %d.\n", number);
+     }
+     printf("\nNumbers you guessed: ");
+     for (int i = 0; i < guessesMade; i++) {
+        printf("%d", guesses[i]);
+     }
+     return 0;
+}
